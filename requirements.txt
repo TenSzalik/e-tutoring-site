@@ -1,0 +1,10 @@
+django
+djangorestframework
+drf-spectacular
+requests
+pytest
+pylint
+black
+Baker
+psycopg2-binary
+django-extensions
