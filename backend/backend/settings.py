@@ -19,6 +19,8 @@ INSTALLED_APPS = [
     "django_extensions",
     "rest_framework",
     "user_profile.apps.UserProfileConfig",
+    "tutorial",
+    "common",
 ]
 
 AUTH_USER_MODEL = "user_profile.User"
