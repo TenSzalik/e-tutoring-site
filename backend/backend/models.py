@@ -15,10 +15,8 @@ class BaseModel(models.Model):
         related_query_name="%(app_label)s_%(class)ss",
     )
     created_at = models.DateTimeField(auto_now_add=True)
-    last_modified = models.DataTimeField(auto_now=True)
-    note = models.TextField(
-        blank=True
-    )
+    last_modified = models.DateTimeField(auto_now=True)
+    note = models.TextField(blank=True)
 
     class Meta:
         abstract = True
