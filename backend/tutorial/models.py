@@ -5,6 +5,14 @@ from backend.models import BaseModel
 from common.models import Place, Disabled
 
 
+class Language(BaseModel):
+
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+
 class Tutorial(BaseModel):
     """
     scope - what range of learning is guaranteed by tutoring ex. high school
@@ -30,9 +38,9 @@ class Tutorial(BaseModel):
     learning_form = models.TextField(max_length=1024)
     homework = models.BooleanField()
     status = models.BooleanField()
-
     place = models.ManyToManyField(Place)
     support_disabled = models.ManyToManyField(Disabled, blank=True)
+    language = models.ManyToManyField(Language)
 
     @staticmethod
     def get_avg_price():
@@ -45,16 +53,7 @@ class Tutorial(BaseModel):
 class PremiumTutorial(BaseModel):
 
     status = models.BooleanField()
-
     tutorial = models.ForeignKey(Tutorial, on_delete=models.CASCADE)
 
     def set_status(self):
         pass
-
-
-class Language(BaseModel):
-
-    name = models.CharField(max_length=255)
-
-    def __str__(self):
-        return self.name
