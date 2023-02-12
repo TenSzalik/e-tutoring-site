@@ -7,11 +7,14 @@ from drf_spectacular.views import (
     SpectacularSwaggerView,
 )
 from rest_framework import routers
+from tutorial.urls import router as tutorial
+
 
 router = routers.DefaultRouter()
 
 urlpatterns = [
     path("api/", include(router.urls)),
+    path("api/tutorial/", include(tutorial.urls)),
     path("admin/", admin.site.urls),
 ]
 
