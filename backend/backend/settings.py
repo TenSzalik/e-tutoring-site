@@ -97,6 +97,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+TEST_RUNNER = "backend.test_runner.PytestTestRunner"
+
 LANGUAGE_CODE = "en-us"
 
 TIME_ZONE = "UTC"
