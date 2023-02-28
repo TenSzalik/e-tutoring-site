@@ -8,6 +8,7 @@ from drf_spectacular.views import (
 )
 from rest_framework import routers
 from tutorial.urls import router as tutorial
+from user_profile.urls import router as user_profile
 
 
 router = routers.DefaultRouter()
@@ -15,6 +16,7 @@ router = routers.DefaultRouter()
 urlpatterns = [
     path("api/", include(router.urls)),
     path("api/tutorial/", include(tutorial.urls)),
+    path("api/user_profile/", include(user_profile.urls)),
     path("admin/", admin.site.urls),
 ]
 
