@@ -1,12 +1,12 @@
 from django.db import models
 from django.db.models import Avg
 from django.contrib.postgres.fields import DateRangeField
+from django.core.validators import MinValueValidator
 from backend.models import BaseModel
 from common.models import Place, Disabled
 
 
 class Language(BaseModel):
-
     name = models.CharField(max_length=255)
 
     def __str__(self):
@@ -31,6 +31,7 @@ class Tutorial(BaseModel):
     name = models.CharField(max_length=255)
     date = DateRangeField()
     price = models.PositiveIntegerField()
+    people = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1)])
     description = models.TextField()
     scope = models.TextField()
     lvl = models.CharField(choices=KIND_CHOICES, max_length=1)
@@ -51,7 +52,6 @@ class Tutorial(BaseModel):
 
 
 class PremiumTutorial(BaseModel):
-
     status = models.BooleanField()
     tutorial = models.ForeignKey(Tutorial, on_delete=models.CASCADE)
 
