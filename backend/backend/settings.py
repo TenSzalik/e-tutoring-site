@@ -1,4 +1,3 @@
-import os
 from pathlib import Path
 
 DEBUG = True
@@ -76,8 +75,8 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "postgres",
         "USER": "postgres",
-        "PASSWORD": os.environ["DB_PASS"],
-        "HOST": "localhost",
+        "PASSWORD": "postgres",
+        "HOST": "172.18.0.10",
         "PORT": "5432",
     }
 }
@@ -110,3 +109,5 @@ USE_TZ = True
 STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+ALLOWED_HOSTS = ["*"]
