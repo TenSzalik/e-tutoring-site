@@ -1,0 +1,16 @@
+Baker
+black
+django
+django-extensions
+djangorestframework
+drf-extra-fields
+drf-spectacular
+drf-writable-nested
+gunicorn
+model-bakery
+psycopg2-binary
+pylint
+pylint-django
+pytest
+pytest-django
+requests
