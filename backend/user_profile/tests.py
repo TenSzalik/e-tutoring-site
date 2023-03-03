@@ -104,7 +104,7 @@ def test_user_retrieve(auth_client, user):
         "email": "test_email@example.com1",
         "first_name": "Gracjan1",
         "last_name": "Chudziak1",
-        "password": "foobarbaz1"
+        "password": "foobarbaz1",
     }
 
     assert response.status_code == status.HTTP_200_OK
@@ -114,14 +114,18 @@ def test_user_retrieve(auth_client, user):
 @pytest.mark.django_db(transaction=True, reset_sequences=True)
 def test_user_create(auth_client, user):
     data = {
+        "first_name": "Foo",
+        "last_name": "Bar",
         "email": "test_new_email@example.com1",
-        "password": "foobarbaz1"
+        "password": "foobarbaz1",
     }
 
     response = auth_client.post("/api/user_profile/", data, format="json")
     expected_response = {
+        "first_name": "Foo",
+        "last_name": "Bar",
         "email": "test_new_email@example.com1",
-        "password": "foobarbaz1"
+        "password": "foobarbaz1",
     }
 
     assert response.status_code == status.HTTP_201_CREATED
@@ -133,13 +137,17 @@ def test_user_create(auth_client, user):
 @pytest.mark.django_db(transaction=True, reset_sequences=True)
 def test_user_update(auth_client, user):
     data = {
+        "first_name": "Foo",
+        "last_name": "Bar",
         "email": "test_email@example.com1",
-        "password": "foobarbaz1"
+        "password": "foobarbaz1",
     }
     response = auth_client.put("/api/user_profile/1/", data, format="json")
     expected_response = {
+        "first_name": "Foo",
+        "last_name": "Bar",
         "email": "test_email@example.com1",
-        "password": "foobarbaz1"
+        "password": "foobarbaz1",
     }
 
     assert response.status_code == status.HTTP_200_OK
