@@ -18,6 +18,18 @@ A website for tutors and students. Allows you to place adverts, make appointment
 
 More in `backend/requirements.txt`
 
+### Frontend
+
+- JavaScript
+
+- TypeScript
+
+- React
+
+- Vite
+
+- TailwindCSS
+
 ## Requirements
 
 You need to install:
@@ -41,6 +53,8 @@ psql --version
 ```
 
 ## Running the project
+
+### Backend
 
 1. Clone the repository:
 
@@ -87,7 +101,7 @@ psql --version
     `http://0.0.0.0:8000/api/schema/redoc/`
 
 
-## Useful commands
+### Useful commands
 
 - To stop the docker use the keyboard shortcut `Ctrl + C`
 
@@ -117,3 +131,23 @@ psql --version
     ```
 
     This command will remove the containers, network, and delete all data from Postgres.
+
+### Frontend
+
+1. Move to `frontend/` directory
+
+    ```sh
+    cd frontend
+    ```
+
+2. Install node
+
+    ```sh
+    npm install
+    ```
+
+3. Run server
+
+    ```sh
+    npx run dev
+    ```
