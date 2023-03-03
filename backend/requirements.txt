@@ -2,7 +2,9 @@ Baker
 black
 django
 django-extensions
+django-cors-headers
 djangorestframework
+djangorestframework-simplejwt
 drf-extra-fields
 drf-spectacular
 drf-writable-nested
