@@ -10,7 +10,7 @@ SECRET_KEY = "django-insecure-j-#^r8qk$p93kq=vd4kuo(^h&v0i%b_d(wn@5zl=ai_v3y0v*z
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
-    'corsheaders',
+    "corsheaders",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -19,7 +19,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_extensions",
     "rest_framework",
-    'rest_framework_simplejwt',
+    "rest_framework_simplejwt",
     "user_profile.apps.UserProfileConfig",
     "tutorial",
     "common",
@@ -33,16 +33,16 @@ if DEBUG:
     ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
 SIMPLE_JWT = {
-    'AUTH_HEADER_TYPES': ('Bearer',),
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    "AUTH_HEADER_TYPES": ("Bearer",),
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
 }
 
 SPECTACULAR_SETTINGS = {
@@ -53,7 +53,7 @@ SPECTACULAR_SETTINGS = {
 }
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",

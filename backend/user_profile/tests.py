@@ -10,7 +10,7 @@ def test_create_superuser():
     admin_user = get_user_model().objects.create_superuser(
         email="super@user.com", password="foobarbaz"
     )
-    
+
     assert admin_user.email == "super@user.com"
     assert admin_user.is_active is True
     assert admin_user.is_staff is True
@@ -58,7 +58,7 @@ def test_read_response_200_if_unauthorized(not_auth_client):
 
 @pytest.mark.django_db(transaction=True, reset_sequences=True)
 def test_delete_response_401_if_unauthorized(not_auth_client):
-    response = not_auth_client.delete("/api/user_profile/1/")
+    response = not_auth_client.delete("/api/user_profile/2/")
 
     assert response.status_code == status.HTTP_401_UNAUTHORIZED
 
@@ -88,14 +88,14 @@ def test_user_list(auth_client, user):
             "email": "test_email@example.com1",
             "first_name": "Gracjan1",
             "last_name": "Chudziak1",
-            "password": "foobarbaz1"
+            "password": "foobarbaz1",
         },
         {
             "id": 2,
             "email": "test_email@example.com2",
             "first_name": "Gracjan2",
             "last_name": "Chudziak2",
-            "password": "foobarbaz2"
+            "password": "foobarbaz2",
         },
     ]
 

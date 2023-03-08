@@ -19,8 +19,8 @@ urlpatterns = [
     path("api/tutorial/", include(tutorial.urls)),
     path("api/user_profile/", include(user_profile.urls)),
     path("admin/", admin.site.urls),
-    path('api/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path("api/login/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path("api/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
 ]
 
 if settings.DEBUG:

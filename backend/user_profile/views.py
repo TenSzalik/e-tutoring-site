@@ -6,12 +6,12 @@ from rest_framework.permissions import BasePermission, IsAuthenticated
 
 class ReadCreateOnly(BasePermission):
     def has_permission(self, request, view):
-        return request.method in ('GET', 'HEAD', 'OPTIONS', 'POST')
+        return request.method in ("GET", "HEAD", "OPTIONS", "POST")
 
 
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
-    # permission_classes = [IsAuthenticated|ReadCreateOnly]
+    permission_classes = [IsAuthenticated|ReadCreateOnly]
 
     def get_serializer_class(self):
         if self.action in ("list", "retrieve"):
