@@ -50,10 +50,17 @@ def test_create_user_without_required_fields():
 
 
 @pytest.mark.django_db(transaction=True, reset_sequences=True)
-def test_response_401_if_unauthorized(not_auth_client):
+def test_read_response_200_if_unauthorized(not_auth_client):
     response = not_auth_client.get("/api/user_profile/")
 
-    assert response.status_code == status.HTTP_403_FORBIDDEN
+    assert response.status_code == status.HTTP_200_OK
+
+
+@pytest.mark.django_db(transaction=True, reset_sequences=True)
+def test_delete_response_401_if_unauthorized(not_auth_client):
+    response = not_auth_client.delete("/api/user_profile/1/")
+
+    assert response.status_code == status.HTTP_401_UNAUTHORIZED
 
 
 @pytest.mark.django_db(transaction=True, reset_sequences=True)
