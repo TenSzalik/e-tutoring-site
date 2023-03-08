@@ -132,6 +132,20 @@ psql --version
 
     This command will remove the containers, network, and delete all data from Postgres.
 
+- Run pytest
+
+    1. Go to the docker container
+
+        ```sh
+        docker exec -it <nazwa_kontenera> bash
+        ```
+
+    2. Run
+
+        ```sh
+        pytest
+        ```
+
 ### Frontend
 
 1. Move to `frontend/` directory
