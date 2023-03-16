@@ -7,7 +7,6 @@ const Register = ({
   setConfirmPassword,
   handleRegister,
 }) => {
-
   return (
     <form onSubmit={handleRegister}>
       <div className="p-2">
