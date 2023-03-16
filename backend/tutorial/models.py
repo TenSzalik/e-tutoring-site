@@ -3,7 +3,7 @@ from django.db.models import Avg
 from django.contrib.postgres.fields import DateRangeField
 from django.core.validators import MinValueValidator
 from backend.models import BaseModel
-from common.models import Place, Disabled
+from common.models import BaseComment, Place, Disabled
 
 
 class Language(BaseModel):
@@ -57,3 +57,7 @@ class PremiumTutorial(BaseModel):
 
     def set_status(self):
         pass
+
+
+class CommentTutorial(BaseComment):
+    tutorial = models.ForeignKey(Tutorial, on_delete=models.CASCADE)
