@@ -40,3 +40,11 @@ class UpdateApiView(mixins.UpdateModelMixin, GenericViewSet):
     """
 
     pass
+
+
+class ReadApiView(ListApiView, RetrieveApiView):
+    """
+    Read methods
+    """
+
+    pass
