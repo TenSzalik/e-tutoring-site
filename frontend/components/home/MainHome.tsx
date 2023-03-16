@@ -1,49 +1,28 @@
 import { useState } from 'react'
 import Login from './Login'
 import Register from './Register'
+import apiRequest from '../../utils/apiRequest'
+import urls from '../../utils/apiUrls'
 
 function MainHome() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-
-  const handleSubmit = async (event) => {
-    event.preventDefault()
-    try {
-      const response = await fetch('http://0.0.0.0:8000/api/login/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      })
-      if (!response.ok) {
-        throw new Error('Invalid email or password')
-      }
-      const data = await response.json()
-      document.cookie = `Bearer=${data.access}`
-    } catch (error) {
-      console.error(error)
-    }
-  }
+  const [fetchError, setFetchError] = useState(null)
 
   const handleRegister = async (event) => {
     event.preventDefault()
     if (password != confirmPassword) {
-      alert("Inwalid Password")
+      alert('Inwalid Password')
     } else {
-        console.log(email, password)
-      try {
-        const response = await fetch('http://0.0.0.0:8000/api/user_profile/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, password }),
-        })
-        console.log(response)
-        if (!response.ok) {
-          throw new Error('Invalid email or password')
-        }
-      } catch (error) {
-        console.error(error)
+      const options: object = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
       }
+
+      const result = await apiRequest(urls.user, options)
+      if (result) setFetchError(result)
     }
   }
 
@@ -135,13 +114,7 @@ function MainHome() {
       >
         <section className="w-1/3 h-1/2 text-center p-8 border-8 border-cyan-200">
           <div className="border-8 border-teal-300 h-full">
-            <Login
-              email={email}
-              setEmail={setEmail}
-              password={password}
-              setPassword={setPassword}
-              handleSubmit={handleSubmit}
-            ></Login>
+            <Login></Login>
           </div>
         </section>
         <section className="w-1/3 h-1/2 text-center p-8 border-8 border-cyan-200">
