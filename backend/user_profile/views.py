@@ -11,7 +11,7 @@ class ReadCreateOnly(BasePermission):
 
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
-    permission_classes = [ReadCreateOnly]
+    permission_classes = [IsAuthenticated|ReadCreateOnly]
 
     def get_serializer_class(self):
         if self.action in ("list", "retrieve"):
