@@ -1,6 +1,12 @@
 from rest_framework.viewsets import ModelViewSet
-from .models import Tutorial
-from .serializers import TutorialReadSerializer, TutorialCreateUpdateSerializer
+from backend.viewsets import ReadApiView
+from .models import Tutorial, Language
+from .serializers import TutorialReadSerializer, TutorialCreateUpdateSerializer, LanguageSerializer
+
+
+class LanguageViewSet(ReadApiView):
+    queryset = Language.objects.all()
+    serializer_class = LanguageSerializer
 
 
 class TutorialViewSet(ModelViewSet):

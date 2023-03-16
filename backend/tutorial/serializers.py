@@ -1,6 +1,15 @@
 from rest_framework import serializers
 from drf_extra_fields.fields import DateRangeField
-from .models import Tutorial, PremiumTutorial
+from .models import Language, Tutorial, PremiumTutorial
+
+
+class LanguageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Language
+        fields = [
+            "id",
+            "name",
+        ]
 
 
 class PremiumTutorialSerializer(serializers.ModelSerializer):
@@ -20,6 +29,7 @@ class TutorialReadSerializer(serializers.ModelSerializer):
         model = Tutorial
         fields = [
             "id",
+            "created_by",
             "name",
             "date",
             "price",
@@ -32,6 +42,7 @@ class TutorialReadSerializer(serializers.ModelSerializer):
             "status",
             "place",
             "support_disabled",
+            "language",
             "premiumtutorial_set",
         ]
 
