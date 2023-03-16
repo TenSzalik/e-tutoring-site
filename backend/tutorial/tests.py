@@ -11,6 +11,7 @@ def test_tutorial_list(auth_client, tutorial):
     expected_response = [
         {
             "id": 1,
+            "created_by": 6,
             "name": "course1",
             "date": {"lower": "2023-01-01", "upper": "2024-02-02", "bounds": "[)"},
             "price": 50,
@@ -24,9 +25,11 @@ def test_tutorial_list(auth_client, tutorial):
             "place": [1],
             "support_disabled": [1],
             "premiumtutorial_set": [],
+            "language": [1],
         },
         {
             "id": 2,
+            "created_by": 7,
             "name": "course2",
             "date": {"lower": "2023-01-01", "upper": "2024-02-02", "bounds": "[)"},
             "price": 50,
@@ -40,6 +43,7 @@ def test_tutorial_list(auth_client, tutorial):
             "place": [1],
             "support_disabled": [1],
             "premiumtutorial_set": [],
+            "language": [1],
         },
     ]
 
@@ -52,6 +56,7 @@ def test_tutorial_retrieve(auth_client, tutorial):
     response = auth_client.get("/api/tutorial/1/")
     expected_response = {
         "id": 1,
+        "created_by": 6,
         "name": "course1",
         "date": {"lower": "2023-01-01", "upper": "2024-02-02", "bounds": "[)"},
         "price": 50,
@@ -65,6 +70,7 @@ def test_tutorial_retrieve(auth_client, tutorial):
         "place": [1],
         "support_disabled": [1],
         "premiumtutorial_set": [],
+        "language": [1],
     }
 
     assert response.status_code == status.HTTP_200_OK
@@ -173,3 +179,33 @@ def test_tutorial_delete(auth_client, tutorial):
     assert data.status_code == status.HTTP_204_NO_CONTENT
     with pytest.raises(ObjectDoesNotExist):
         Tutorial.objects.get(id=1)
+
+
+@pytest.mark.django_db(transaction=True, reset_sequences=True)
+def test_language_list(auth_client, language):
+    response = auth_client.get("/api/tutorial/language/")
+    expected_response = [
+        {
+            "id": 1,
+            "name": "polish1"
+        },
+        {
+            "id": 2,
+            "name": "polish2"
+        }
+    ]
+
+    assert response.status_code == status.HTTP_200_OK
+    assert response.data == expected_response
+
+
+@pytest.mark.django_db(transaction=True, reset_sequences=True)
+def test_language_retrieve(auth_client, language):
+    response = auth_client.get("/api/tutorial/language/1/")
+    expected_response = {
+            "id": 1,
+            "name": "polish1"
+        }
+
+    assert response.status_code == status.HTTP_200_OK
+    assert response.data == expected_response

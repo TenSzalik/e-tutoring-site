@@ -43,3 +43,8 @@ def fixture_disabled():
 @pytest.fixture(name="tutorial")
 def fixture_tutorial():
     baker.make_recipe("tutorial.custom_tutorial", _quantity=2)
+
+
+@pytest.fixture(name="language")
+def fixture_language():
+    baker.make_recipe("tutorial.custom_language", _quantity=2)
