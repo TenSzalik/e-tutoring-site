@@ -50,22 +50,22 @@ def test_create_user_without_required_fields():
 
 
 @pytest.mark.django_db(transaction=True, reset_sequences=True)
-def test_read_response_200_if_unauthorized(not_auth_client):
-    response = not_auth_client.get("/api/user_profile/")
+def test_read_response_200_if_unauthorized(not_auth_client, user):
+    response = not_auth_client.get("/api/user/")
 
     assert response.status_code == status.HTTP_200_OK
 
 
 @pytest.mark.django_db(transaction=True, reset_sequences=True)
-def test_delete_response_401_if_unauthorized(not_auth_client):
-    response = not_auth_client.delete("/api/user_profile/2/")
+def test_delete_response_401_if_unauthorized(not_auth_client, user):
+    response = not_auth_client.delete("/api/user/2/")
 
     assert response.status_code == status.HTTP_401_UNAUTHORIZED
 
 
 @pytest.mark.django_db(transaction=True, reset_sequences=True)
 def test_user_access_succesfully(auth_client):
-    response = auth_client.get("/api/user_profile/1/")
+    response = auth_client.get("/api/user/1/")
 
     expected_user = {
         "id": 1,
@@ -81,7 +81,7 @@ def test_user_access_succesfully(auth_client):
 
 @pytest.mark.django_db(transaction=True, reset_sequences=True)
 def test_user_list(auth_client, user):
-    response = auth_client.get("/api/user_profile/")
+    response = auth_client.get("/api/user/")
     expected_response = [
         {
             "id": 1,
@@ -105,7 +105,7 @@ def test_user_list(auth_client, user):
 
 @pytest.mark.django_db(transaction=True, reset_sequences=True)
 def test_user_retrieve(auth_client, user):
-    response = auth_client.get("/api/user_profile/1/")
+    response = auth_client.get("/api/user/1/")
     expected_response = {
         "id": 1,
         "email": "test_email@example.com1",
@@ -127,7 +127,7 @@ def test_user_create(auth_client, user):
         "password": "foobarbaz1",
     }
 
-    response = auth_client.post("/api/user_profile/", data, format="json")
+    response = auth_client.post("/api/user/", data, format="json")
     expected_response = {
         "first_name": "Foo",
         "last_name": "Bar",
@@ -142,14 +142,14 @@ def test_user_create(auth_client, user):
 
 
 @pytest.mark.django_db(transaction=True, reset_sequences=True)
-def test_user_update(auth_client, user):
+def test_user_update(auth_client):
     data = {
         "first_name": "Foo",
         "last_name": "Bar",
         "email": "test_email@example.com1",
         "password": "foobarbaz1",
     }
-    response = auth_client.put("/api/user_profile/1/", data, format="json")
+    response = auth_client.put("/api/user/1/", data, format="json")
     expected_response = {
         "first_name": "Foo",
         "last_name": "Bar",
@@ -164,7 +164,7 @@ def test_user_update(auth_client, user):
 
 @pytest.mark.django_db(transaction=True, reset_sequences=True)
 def test_user_delete(auth_client, user):
-    data = auth_client.delete("/api/user_profile/1/")
+    data = auth_client.delete("/api/user/1/")
 
     assert data.status_code == status.HTTP_204_NO_CONTENT
     with pytest.raises(ObjectDoesNotExist):
