@@ -1,11 +1,5 @@
-import React, { useState, useRef } from 'react'
-
 const MainCourse = () => {
-    return (
-        <div>
-            <h1>( ͡° ͜ʖ ͡°)</h1>
-        </div>
-    )
+  return <div>Course</div>
 }
 
-export default MainCourse;
+export default MainCourse
