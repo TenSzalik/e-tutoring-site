@@ -2,6 +2,7 @@ Baker
 black
 django
 django-extensions
+django-filter
 django-cors-headers
 djangorestframework
 djangorestframework-simplejwt

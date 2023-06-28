@@ -2,6 +2,7 @@ from rest_framework.viewsets import ModelViewSet
 from backend.viewsets import ReadApiView
 from .models import Tutorial, Language
 from .serializers import TutorialReadSerializer, TutorialCreateUpdateSerializer, LanguageSerializer
+from django_filters import rest_framework as filters
 
 
 class LanguageViewSet(ReadApiView):
@@ -9,8 +10,18 @@ class LanguageViewSet(ReadApiView):
     serializer_class = LanguageSerializer
 
 
+class TutorialFilter(filters.FilterSet):
+    min_price = filters.NumberFilter(field_name="price", lookup_expr='gte')
+    max_price = filters.NumberFilter(field_name="price", lookup_expr='lte')
+
+    class Meta:
+        model = Tutorial
+        fields = ["lvl", "homework", "place", "support_disabled", "language"]
+
+
 class TutorialViewSet(ModelViewSet):
     queryset = Tutorial.objects.all()
+    filterset_class = TutorialFilter
 
     def get_serializer_class(self):
         if self.action in ("list", "retrieve"):
