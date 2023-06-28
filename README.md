@@ -163,5 +163,5 @@ psql --version
 3. Run server
 
     ```sh
-    npx run dev
+    npm run dev
     ```
