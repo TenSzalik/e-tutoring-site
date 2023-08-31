@@ -34,23 +34,14 @@ More in `backend/requirements.txt`
 
 You need to install:
 
-- Docker
-- Docker Compose
-- Postgres
+- docker
+- docker compose
 
 Check that everything is working:
 
-```sh
-docker -v
-```
+`docker -v`
 
-```sh
-docker-compose -v
-```
-
-```sh
-psql --version
-```
+`docker compose -v`
 
 ## Running the project
 
@@ -58,37 +49,22 @@ psql --version
 
 1. Clone the repository:
 
-    ```sh
-    git clone https://github.com/TenSzalik/e-tutoring-site
-    ```
+    `git clone https://github.com/TenSzalik/e-tutoring-site`
 
-2. Navigate to the project directory:
-
-    ```sh
-    cd backend
-    ```
+2. Navigate to the `backend` directory
 
 3. Run the project using Docker Compose:
 
-    ```sh
-    docker-compose up --build
-    ```
+    `docker compose up --build`
 
 4. Run migrations:
 
-
-    ```sh
-    docker-compose run django python manage.py migrate
-    ```
+    `docker compose run django python manage.py migrate`
 
 
 5. Create super-user:
 
-
-    ```sh
-    docker-compose run django python manage.py createsuperuser
-    ```
-
+    `docker compose run django python manage.py createsuperuser`
 
 6. Open a web browser and go to `http://0.0.0.0:8000/admin` to login
 
@@ -103,65 +79,18 @@ psql --version
 
 ### Useful commands
 
-- To stop the docker use the keyboard shortcut `Ctrl + C`
-
-
-- Start again:
-
-    ```sh
-    docker-compose up
-    ```
-
-- Remove all containers:
-
-    ```sh
-    docker-compose down
-    ```
-
-- Check active containers:
-
-    ```sh
-    docker ps
-    ```
-
-- To completely remove the project, execute the following command:
-
-    ```sh
-    docker-compose down -v
-    ```
-
-    This command will remove the containers, network, and delete all data from Postgres.
-
 - Run pytest
 
-    1. Go to the docker container
-
-        ```sh
-        docker exec -it <nazwa_kontenera> bash
-        ```
-
-    2. Run
-
-        ```sh
-        pytest
-        ```
+    `docker exec -it <container_name> pytest`
 
 ### Frontend
 
 1. Move to `frontend/` directory
 
-    ```sh
-    cd frontend
-    ```
-
 2. Install node
 
-    ```sh
-    npm install
-    ```
+    `npm install`
 
 3. Run server
 
-    ```sh
-    npm run dev
-    ```
+    `npm run dev`
